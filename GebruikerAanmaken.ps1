@@ -1,4 +1,4 @@
-﻿#Te importeren modules
+#Te importeren modules
 Import-Module activedirectory
 
 #Main form code
@@ -18,7 +18,7 @@ $PictureBox1                     = New-Object system.Windows.Forms.PictureBox
 $PictureBox1.width               = 100
 $PictureBox1.height              = 100
 $PictureBox1.location            = New-Object System.Drawing.Point(26,300)
-$PictureBox1.imageLocation       = "C:\fontyslogo.png"
+$PictureBox1.imageLocation       = "https://fontys.nl/upload_mm/d/e/d/585c2668-3e25-4908-ae18-42d4af79acd2_00-FONTYS-CARD-PAARS-RGB_614x613_443x443.png"
 $PictureBox1.SizeMode            = [System.Windows.Forms.PictureBoxSizeMode]::zoom
 $Label1                          = New-Object system.Windows.Forms.Label
 
@@ -156,7 +156,11 @@ if (Get-ADUser -F {SamAccountName -eq $gebruikersnaamklein})
     #Als gebruiker al bestaat geef dan een melding
     $labelStatus.Text                = "Mislukt"
     $labelStatus.ForeColor           = [System.Drawing.ColorTranslator]::FromHtml("#ff0000")
-    [System.Windows.Forms.MessageBox]::Show("Het aanmaken van $gebruikersnaamklein is mislukt.`nGebruiker: $gebruikersnaamklein bestaat al`nProbeer het nogmaals!", "Gebruiker niet aangemaakt!")
+    [System.Windows.Forms.MessageBox]::Show("
+    Het aanmaken van $gebruikersnaamklein is mislukt.
+    Gebruiker: $gebruikersnaamklein bestaat al.
+    Probeer het nogmaals!", "Gebruiker niet aangemaakt!
+    ")
 }
 else
 {
@@ -177,7 +181,11 @@ else
     #Als gebruiker is aangemaakt geef dan een melding
     $labelStatus.Text                = "Gelukt"
     $labelStatus.ForeColor           = [System.Drawing.ColorTranslator]::FromHtml("#00ff00")
-    [System.Windows.Forms.MessageBox]::Show("Het aanmaken van $gebruikersnaamklein is gelukt.`nEmail: $email`nWachtwoord: $wachtwoord", "Gebruiker $gebruikersnaamklein is aangemaakt!")
+    [System.Windows.Forms.MessageBox]::Show("
+    Het aanmaken van $gebruikersnaamklein is gelukt.
+    Email: $email
+    Wachtwoord: $wachtwoord",
+    "Gebruiker $gebruikersnaamklein is aangemaakt!")
 }
 
 })
